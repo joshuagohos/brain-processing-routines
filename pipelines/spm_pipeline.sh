@@ -2,7 +2,7 @@
 
 # SET PATHS, DATA, PARAMETERS AND GLOBS
 CURR_DIR=$(pwd)
-PROJECT_DIR=/home/joshgoh/projects/REP
+PROJECT_DIR=/home/joshgoh/projects/PROJ_CODE
 DERIVATIVES_DIR=${PROJECT_DIR}/data/derivatives
 #SEL_DATA_ARR=("o15" "y01")
 DATA_ARR_FULLPATH=(${PROJECT_DIR}/data/sourcedata/*)
@@ -29,8 +29,8 @@ LVL1_MASK=""
 LVL1_STATS_RESIDUALS=0 # 1: Save, 0: Do not save 
 LVL1_STATS_DELETE_CONS=1 # 1: Delete, 0: Do not delete 
 STUDY_SPECIFIC_MAKE_LVL1_CON_LIST_SCRIPT=${PROJECT_DIR}/code/routines/spm_make_lvl1_con_lists.sh # Be sure to check this file
-STUDY_SPECIFIC_MAKE_LVL2_SPEC_LIST_SCRIPT=${PROJECT_DIR}/code/routines/bash_make_lvl2_spec_lists.sh # Be sure to check this file
-STUDY_SPECIFIC_MAKE_LVL2_CON_LIST_SCRIPT=${PROJECT_DIR}/code/routines/bash_make_lvl2_con_lists.sh # Be sure to check this file
+STUDY_SPECIFIC_MAKE_LVL2_SPEC_LIST_SCRIPT=${PROJECT_DIR}/code/routines/bash_make_spm_lvl2_spec_lists.sh # Be sure to check this file
+STUDY_SPECIFIC_MAKE_LVL2_CON_LIST_SCRIPT=${PROJECT_DIR}/code/routines/bash_make_spm_lvl2_con_lists.sh # Be sure to check this file
 GROUP_NAME=group
 LVL2_STATS_RESIDUALS=0 # 1: Save, 0: Do not save
 LVL2_STATS_DELETE_CONS=1 # 1: Delete, 0: Do not delete
