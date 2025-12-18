@@ -39,7 +39,7 @@ cd /usr/local/bin
 sudo ln -s /usr/local/MATLAB/2025b/bin/matlab
 ```
 
-3. SPM12
+3. SPM25
 - This should be installed and set up to be in the user-level Matlab's search path.
 - Here is a sample installation script (as at 2026/12/18).
 ```
