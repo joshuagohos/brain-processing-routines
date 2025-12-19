@@ -1,4 +1,4 @@
-# Brain Processing Routines
+# Brain Image Processing Routines
 *Updated 202512181231 by Josh Goh*
 
 Currently, 
