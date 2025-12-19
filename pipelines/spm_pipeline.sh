@@ -38,6 +38,7 @@ LVL2_STATS_DELETE_CONS=1 # 1: Delete, 0: Do not delete
 # SELECT ROUTINES
 SUBJ_LEVEL_PREPROC="no"
 DICOM2NII="no"
+COPY_RAW2DERIVATIVES="yes"
 FILE_CLEANUP="no"
 REALIGN_RESLICE="no"
 SLICE_TIME_CORRECTION="no"
@@ -81,13 +82,18 @@ if [[ "$SUBJ_LEVEL_PREPROC" == "yes" ]]; then
 			
 		echo "Working on ${subj}"
 
-		# Convert dicom to raw, copy to derivatives
+		# Convert dicom to raw.
 		if [[ "${DICOM2NII}" == "yes" ]]; then
 			echo "Working on ${subj} DICOM conversion."
 			mkdir -p ${PROJECT_DIR}/data/rawdata/$subj/nii/
 			dcm2niix -o ${PROJECT_DIR}/data/rawdata/$subj/nii/ ${PROJECT_DIR}/data/sourcedata/${subj}
-			cp -rf ${PROJECT_DIR}/data/rawdata/$subj ${DERIVATIVES_DIR}/
 			echo "${subj} DICOM conversion done."
+		fi
+
+		# Copy to derivatives
+		if [[ "${COPY_RAW2DERIVATIVES}" == "yes" ]]; then
+			cp -rf ${PROJECT_DIR}/data/rawdata/$subj ${DERIVATIVES_DIR}/
+			echo "${subj} NIfTI files copied to derivatives directory."
 		fi
 
 		# Check and/or cleanup unwanted files
@@ -100,10 +106,10 @@ if [[ "$SUBJ_LEVEL_PREPROC" == "yes" ]]; then
 			echo "${subj} unwanted files removed. Now is a good time to check your remaining files first"
 			EPI_FILES=( ${DERIVATIVES_DIR}/${subj}/nii/${EPI_FILENAME_GLOB}.nii ) 
 			for (( file=0; file<${#EPI_FILES[@]}; file++ )); do
-				echo ${EPI_FILES[${file}]} >> ${PROJECT_DIR}/code/routines/EPI_${file}_DATA_LIST.txt
+				echo ${EPI_FILES[${file}]} >> ${PROJECT_DIR}/code/pipelines/EPI_${file}_DATA_LIST.txt
 			done
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T2_FILENAME_GLOB} >> ${PROJECT_DIR}/code/routines/T2_DATA_LIST.txt
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T1_FILENAME_GLOB} >> ${PROJECT_DIR}/code/routines/T1_DATA_LIST.txt
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T2_FILENAME_GLOB} >> ${PROJECT_DIR}/code/pipelines/T2_DATA_LIST.txt
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T1_FILENAME_GLOB} >> ${PROJECT_DIR}/code/pipelines/T1_DATA_LIST.txt
 			echo "List of files updated in project code directory."
 		fi
 		
