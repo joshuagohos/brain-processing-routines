@@ -52,6 +52,11 @@ echo "addpath /opt/spm" >> ~/Documents/MATLAB/startup.m
 echo "warning('off', 'MATLAB:class:LoadWarning');" >> ~/Documents/MATLAB/startup.m
 ```
 
+- The TAPAS-PhysIO toolbox is also required.
+- Here is a sample installation script (as at 2026/12/21).
+```
+```
+
 **4. FSL**
 
 **5. AFNI**
