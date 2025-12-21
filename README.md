@@ -11,7 +11,7 @@ The usage mode is to pass Matlab routines in Bash shell script wrappers, and cal
 - Capacity to integrate routines based on other programming environments (e.g. Python, R).
 
 ## Dependencies
-1. MricroGL
+**1. MricroGL**
 - This is needed for the dicom conversion tool (dcm2niix).
 - This needs to be installed with dcm2niix (mricrogl; optional) in the system search path.
 - Here is a sample script to install MricroGL in a manner that the pipelines here can use (as at 2026/12/18).
@@ -25,7 +25,7 @@ sudo ln -s /opt/MRIcroGL/MRIcroGL mricrogl
 sudo ln -s /opt/MRIcroGL/Resources/dcm2niix dcm2niix
 ```
 
-2. Matlab
+**2. Matlab**
 - This should be downloaded from [MathWorks](https://www.mathworks.com) using your Mathworks account and installed as instructed on their website.
 - The 'matlab' function then needs to be in the system search path.
 - Here is a sample installation script after the installation zip file has been downloaded and unzipped (e.g. to the ~/Downloads/matlab_R2025b_Linux folder).
@@ -39,7 +39,7 @@ cd /usr/local/bin
 sudo ln -s /usr/local/MATLAB/2025b/bin/matlab
 ```
 
-3. SPM25
+**3. SPM25**
 - This should be installed and set up to be in the user-level Matlab's search path.
 - Here is a sample installation script (as at 2026/12/18).
 ```
@@ -51,6 +51,12 @@ echo "% SPM Setup" >> ~/Documents/MATLAB/startup.m
 echo "addpath /opt/spm" >> ~/Documents/MATLAB/startup.m
 echo "warning('off', 'MATLAB:class:LoadWarning');" >> ~/Documents/MATLAB/startup.m
 ```
+
+**4. FSL**
+
+**5. AFNI**
+
+**6. Freesurfer**
 
 *Note: For Brain and Mind Lab members, these are all already configured in our lab servers. See [Brain and Mind Lab's Setup Server Environment Gitlab](https://gitlab.com/brain-and-mind-lab/servers/setup-server-environment)*
 
