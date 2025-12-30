@@ -241,7 +241,7 @@ if [[ "$GROUP_LEVEL_PREPROC" == "yes" ]]; then
 			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/u_*.nii >> ${DERIVATIVES_DIR}/SST/FLOW_FIELD_LIST.txt
 			ls ${PROJECT_DIR}/data/rawdata/${subj}/nii/${T1_FILENAME_GLOB} | sed 's/rawdata/derivatives/' >> ${DERIVATIVES_DIR}/SST/T1_IMAGE_FILE_LIST.txt
 		done
-		spm_normalise-sst-mni ${DERIVATIVES_DIR}/SST/Template_6.nii ${DERIVATIVES_DIR}/SST/FLOW_FIELD_LIST.txt ${DERIVATIVES_DIR}/SST/T1_IMAGE_FILE_LIST.txt 0,0,0 ${DERIVATIVES_DIR}/SST/spm_normalise_T1_sst-mni 1
+		spm_normalise-sst-mni ${DERIVATIVES_DIR}/SST/Template_6.nii ${DERIVATIVES_DIR}/SST/FLOW_FIELD_LIST.txt ${DERIVATIVES_DIR}/SST/T1_IMAGE_FILE_LIST.txt NaN,NaN,NaN 0,0,0 ${DERIVATIVES_DIR}/SST/spm_normalise_T1_sst-mni 1
 		rm -rf ${DERIVATIVES_DIR}/SST/FLOW_FIELD_LIST.txt ${DERIVATIVES_DIR}/SST/T1_IMAGE_FILE_LIST.txt
 		echo "T1 to SST to MNI normalisation done"
 	fi
