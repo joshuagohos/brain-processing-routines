@@ -292,7 +292,7 @@ if [[ "$SUBJ_LEVEL_STATS" == "yes" ]]; then
 			SOA_LIST=${DERIVATIVES_DIR}/${subj}/nii/SOA_LIST.txt
 			ls -1 ${PROJECT_DIR}/data/sourcedata/${subj}/beh/*_soa.mat >> ${SOA_LIST}
 			REG_LIST=${DERIVATIVES_DIR}/${subj}/nii/REG_LIST.txt
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${LVL1_REGLIST_GLOB} >> ${REG_LIST}
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${LVL1_DENOISE_REGLIST_GLOB} >> ${REG_LIST}
 			spm_lvl1_spec ${EPI_DATA_LIST} ${SOA_LIST} ${REG_LIST} ${RESULTS_DIR} ${LVL1_STATS_UNITS} ${LVL1_STATS_TR} ${LVL1_STATS_MICROTIME_RES} ${LVL1_STATS_MICROTIME_ONSET} "${LVL1_MASK}" ${LVL1_MASK_THRESH} ${subj}_spm_lvl1_spec 1
 			rm -rf ${EPI_DATA_LIST} ${SOA_LIST} ${REG_LIST}
 			echo "${subj} level 1 specification done."
@@ -320,7 +320,14 @@ if [[ "$SUBJ_LEVEL_STATS" == "yes" ]]; then
 			spm_stats_con ${RESULTS_DIR}/SPM.mat ${CONTYPE_LIST} ${CONNAME_LIST} ${CONVEC_LIST} ${LVL1_STATS_DELETE_CONS} ${subj}_spm_lvl1_con 1
 			rm -rf ${SOA_LIST} ${CONTYPE_LIST} ${CONVEC_LIST} ${CONNAME_LIST} ${CONVEC_LIST}
 			echo "${subj} level 1 contrasts done."
-		fi		
+		fi
+
+		# MERGE RESIDUALS
+
+		# DETREND
+
+		# BANDPASS FILTER
+
 	done
 fi
 
