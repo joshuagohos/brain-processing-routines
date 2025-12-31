@@ -10,7 +10,7 @@ EPI_FILENAME_GLOB=*REP*
 T1_FILENAME_GLOB=*T1*.nii
 T2_FILENAME_GLOB=*t2*.nii
 UNWANTED_FILENAME_GLOBS=("*REP*MoCo*.*")
-STUDY_SPECIFIC_OTHER_CLEANUP_SCRIPT=${PROJECT_DIR}/code/routines/spm_pipeline_other_cleanup.sh
+STUDY_SPECIFIC_OTHER_CLEANUP_SCRIPT=${PROJECT_DIR}/code/pipelines/specs/spm_pipeline_other_cleanup.sh
 REALIGN_TO_MEAN=1 # 1: Register to first
 SLICE_TIME_SLICE_ORDER="eval('[2:2:nslices,1:2:nslices]')"
 SLICE_TIME_REF_SLICE=2 # If SLICE_TIME_SLICE_ORDER is in ms, then this is in ms.
@@ -30,9 +30,9 @@ LVL1_MASK_THRESH=0.8
 LVL1_MASK=""
 LVL1_STATS_RESIDUALS=0 # 1: Save, 0: Do not save 
 LVL1_STATS_DELETE_CONS=1 # 1: Delete, 0: Do not delete 
-STUDY_SPECIFIC_MAKE_LVL1_CON_LIST_SCRIPT=${PROJECT_DIR}/code/routines/spm_make_lvl1_con_lists.sh # Be sure to check this file
-STUDY_SPECIFIC_MAKE_LVL2_SPEC_LIST_SCRIPT=${PROJECT_DIR}/code/routines/bash_make_spm_lvl2_spec_lists.sh # Be sure to check this file
-STUDY_SPECIFIC_MAKE_LVL2_CON_LIST_SCRIPT=${PROJECT_DIR}/code/routines/bash_make_spm_lvl2_con_lists.sh # Be sure to check this file
+STUDY_SPECIFIC_MAKE_LVL1_CON_LIST_SCRIPT=${PROJECT_DIR}/code/pipelines/specs/spm_make_lvl1_con_lists.sh # Be sure to check this file
+STUDY_SPECIFIC_MAKE_LVL2_SPEC_LIST_SCRIPT=${PROJECT_DIR}/code/pipelines/specs/bash_make_spm_lvl2_spec_lists.sh # Be sure to check this file
+STUDY_SPECIFIC_MAKE_LVL2_CON_LIST_SCRIPT=${PROJECT_DIR}/code/pipelines/specs/bash_make_spm_lvl2_con_lists.sh # Be sure to check this file
 GROUP_NAME=group
 LVL2_STATS_RESIDUALS=0 # 1: Save, 0: Do not save
 LVL2_STATS_DELETE_CONS=1 # 1: Delete, 0: Do not delete
@@ -108,10 +108,10 @@ if [[ "$SUBJ_LEVEL_PREPROC" == "yes" ]]; then
 			echo "${subj} unwanted files removed. Now is a good time to check your remaining files first"
 			EPI_FILES=( ${DERIVATIVES_DIR}/${subj}/nii/${EPI_FILENAME_GLOB}.nii ) 
 			for (( file=0; file<${#EPI_FILES[@]}; file++ )); do
-				echo ${EPI_FILES[${file}]} >> ${PROJECT_DIR}/code/pipelines/EPI_${file}_DATA_LIST.txt
+				echo ${EPI_FILES[${file}]} >> ${PROJECT_DIR}/code/pipelines/specs/EPI_${file}_DATA_LIST.txt
 			done
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T2_FILENAME_GLOB} >> ${PROJECT_DIR}/code/pipelines/T2_DATA_LIST.txt
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T1_FILENAME_GLOB} >> ${PROJECT_DIR}/code/pipelines/T1_DATA_LIST.txt
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T2_FILENAME_GLOB} >> ${PROJECT_DIR}/code/pipelines/specs/T2_DATA_LIST.txt
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${T1_FILENAME_GLOB} >> ${PROJECT_DIR}/code/pipelines/specs/T1_DATA_LIST.txt
 			echo "List of files updated in project code directory."
 		fi
 		
