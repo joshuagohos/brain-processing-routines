@@ -12,6 +12,7 @@ T2_FILENAME_GLOB=*t2*.nii
 UNWANTED_FILENAME_GLOBS=("*REP*MoCo*.*")
 STUDY_SPECIFIC_OTHER_CLEANUP_SCRIPT=${PROJECT_DIR}/code/pipelines/specs/spm_pipeline_other_cleanup.sh
 REALIGN_TO_MEAN=1 # 1: Register to first
+REALIGN_PARAMS_GLOB=rp*.txt
 SLICE_TIME_SLICE_ORDER="eval('[2:2:nslices,1:2:nslices]')"
 SLICE_TIME_REF_SLICE=2 # If SLICE_TIME_SLICE_ORDER is in ms, then this is in ms.
 SLICE_TIME_TIME_ACQUISITION="eval('tr-(tr/nslices)')" # If SLICE_TIME_SLICE_ORDER is in ms, then this is 0.
@@ -24,8 +25,7 @@ SMOOTH_KERNEL=8,8,8
 rc_GLOBS=("rc1" "rc2" "rc3" "rc4" "rc5" "rc6")
 #LVL1_EPI_INPUT_PREFIX=swar
 LVL1_EPI_INPUT_PREFIX=ar
-LVL1_REGLIST_GLOB=rp*.txt
-LVL1_DENOISE_REGLIST_GLOB=multiple_regressors_epi*.txt
+LVL1_DENOISE_PARAMS_GLOB=multiple_regressors_epi*.txt
 LVL1_STATS_UNITS=secs
 LVL1_STATS_TR=2
 LVL1_STATS_MICROTIME_RES=32
@@ -180,7 +180,7 @@ if [[ "$SUBJ_LEVEL_PREPROC" == "yes" ]]; then
 			WM_MASK=${DERIVATIVES_DIR}/$subj/nii/c2*.nii
 			CSF_MASK=${DERIVATIVES_DIR}/$subj/nii/c3*.nii
 			REG_LIST=${DERIVATIVES_DIR}/${subj}/nii/REG_LIST.txt
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${LVL1_REGLIST_GLOB} >> ${REG_LIST}
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${REALIGN_PARAMS_GLOB} >> ${REG_LIST}
 			spm_denoise_physio ${DERIVATIVES_DIR}/${subj}/nii ${EPI_DATA_LIST} ${LVL1_STATS_TR} ${SLICE_TIME_REF_SLICE} ${SLICE_TO_SLICE} ${WM_MASK} ${CSF_MASK} ${DENOISE_MASK_THRESHOLD} ${REG_LIST} ${subj}_spm_denoise_EPI
 			rm -rf ${EPI_DATA_LIST} ${REG_LIST}
 			echo "${subj} EPI denoising parameter extraction done."
@@ -300,7 +300,7 @@ if [[ "$SUBJ_LEVEL_STATS" == "yes" ]]; then
 			SOA_LIST=${DERIVATIVES_DIR}/${subj}/nii/SOA_LIST.txt
 			ls -1 ${PROJECT_DIR}/data/sourcedata/${subj}/beh/*_soa.mat >> ${SOA_LIST}
 			REG_LIST=${DERIVATIVES_DIR}/${subj}/nii/REG_LIST.txt
-			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${LVL1_REGLIST_GLOB} >> ${REG_LIST}
+			ls -1 ${DERIVATIVES_DIR}/${subj}/nii/${LVL1_DENOISE_PARAMS_GLOB} >> ${REG_LIST}
 			spm_lvl1_spec ${EPI_DATA_LIST} ${SOA_LIST} ${REG_LIST} ${RESULTS_DIR} ${LVL1_STATS_UNITS} ${LVL1_STATS_TR} ${LVL1_STATS_MICROTIME_RES} ${LVL1_STATS_MICROTIME_ONSET} "${LVL1_MASK}" ${LVL1_MASK_THRESH} ${subj}_spm_lvl1_spec 1
 			rm -rf ${EPI_DATA_LIST} ${SOA_LIST} ${REG_LIST}
 			echo "${subj} level 1 specification done."
