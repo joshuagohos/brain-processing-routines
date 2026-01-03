@@ -104,7 +104,7 @@ matlab -nosplash > matlab.out << EOF
         matlabbatch{1}.spm.tools.physio.verbose.fig_output_file = '';
         matlabbatch{1}.spm.tools.physio.verbose.use_tabs = 0;
 
-        save([]'${mbfn}_epi' num2str(r)],'matlabbatch');
+        save(['${mbfn}_epi' num2str(r)],'matlabbatch');
         spm_jobman('run',matlabbatch);
     end
 exit;
