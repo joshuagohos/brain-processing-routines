@@ -356,7 +356,7 @@ if [[ "$SUBJ_LEVEL_STATS" == "yes" ]]; then
 			echo "${subj} level 1 merge residuals done."
 		fi
 
-		# DETREND AND BANDPASS FILTER
+		# DETREND AND BANDPASS FILTER RESIDUALS
 		if [[ ${LVL1_DETREND_BANDPASS_RESIDUALS} == "yes" ]]; then
 
 			echo "Working on ${subj} level 1 detrend and bandpass filter residuals."
