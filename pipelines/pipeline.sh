@@ -352,6 +352,7 @@ if [[ "$SUBJ_LEVEL_STATS" == "yes" ]]; then
 				fslmerge -tr "residuals_epi$(( run + 1 )).nii.gz" $input_files ${EPI_TR}
 				fslmaths "residuals_epi$(( run + 1 )).nii.gz" -nan "residuals_epi$(( run + 1 )).nii.gz" # Set NaN to 0
 			done
+			rm -rf ${LVL1_RESIDUALS_FILENAME_PREFIX}*.nii
 			echo "${subj} level 1 merge residuals done."
 		fi
 
