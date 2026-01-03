@@ -46,6 +46,7 @@ SUBJ_LEVEL_PREPROC="yes"
 DICOM2NII="no"
 COPY_RAW2DERIVATIVES="no"
 FILE_CLEANUP="no"
+INHOMOGENEITY_CORRECTION="no"
 REALIGN_RESLICE="no"
 SLICE_TIME_CORRECTION="no"
 COREG_T2_EPI="no"
@@ -123,6 +124,12 @@ if [[ "$SUBJ_LEVEL_PREPROC" == "yes" ]]; then
 		# Enter subject level directory
 		cd ${DERIVATIVES_DIR}/${subj}/nii
 		EPI_DATA_LIST=${DERIVATIVES_DIR}/${subj}/nii/EPI_DATA_LIST.txt
+
+		# Inhomogeneity correction
+		if [[ "${INHOMOGENEITY_CORRECTION}" == "yes" ]]; then
+			echo "Working on ${subj} inhomogeneity correction."
+			echo "${subj} inhomogeneity correction done."
+		fi
 
 		# Realign and reslice EPI files
 		if [[ "${REALIGN_RESLICE}" == "yes" ]]; then
