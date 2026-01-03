@@ -136,7 +136,7 @@ if [[ "$SUBJ_LEVEL_PREPROC" == "yes" ]]; then
 		if [[ "${INHOMOGENEITY_CORRECTION}" == "yes" ]]; then
 			echo "Working on ${subj} inhomogeneity correction."
 
-
+			
 
 			echo "${subj} inhomogeneity correction done."
 		fi
