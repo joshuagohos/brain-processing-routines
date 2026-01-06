@@ -95,13 +95,13 @@ sudo mv /usr/local/afni/linux_ubuntu_24_64 /usr/local/afni/abin
 sudo bash -c 'echo "#!/bin/sh" >> /etc/profile.d/afni.sh'
 sudo bash -c 'echo "# Set AFNI system-wide path" >> /etc/profile.d/afni.sh'
 sudo bash -c 'echo "export AFNI_DIR=/usr/local/afni" >> /etc/profile.d/afni.sh'
-sudo bash -c 'echo "export PATH=/usr/local/afni/abin:${PATH}" >> /etc/profile.d/afni.sh'
 sudo bash -c 'echo "export AFNI_PLUGINPATH=/usr/local/afni/abin" >> /etc/profile.d/afni.sh'
+sudo bash -c 'echo "export PATH=/usr/local/afni/abin:${PATH}" >> /etc/profile.d/afni.sh'
 sudo bash -c 'echo "#!/bin/csh" >> /etc/profile.d/afni.csh'
 sudo bash -c 'echo "# Set AFNI system-wide path" >> /etc/profile.d/afni.csh'
 sudo bash -c 'echo "setenv AFNI_DIR /usr/local/afni" >> /etc/profile.d/afni.csh'
-sudo bash -c 'echo "set path = ( /usr/local/afni/abin $path )" >> /etc/profile.d/afni.csh'
 sudo bash -c 'echo "setenv AFNI_PLUGINPATH /usr/local/afni/abin" >> /etc/profile.d/afni.csh'
+sudo bash -c 'echo "set path = ( /usr/local/afni/abin $path )" >> /etc/profile.d/afni.csh'
 sudo chmod +x /etc/profile.d/afni.sh
 sudo chmod +x /etc/profile.d/afni.csh
 cd /usr/local/afni/abin
