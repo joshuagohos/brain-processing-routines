@@ -180,6 +180,18 @@ sudo chmod +rwx /opt/brain-image-processing-routines/bin/*
 sudo rsync -azvh /opt/brain-image-processing-routines/bin/* /usr/local/bin/
 ```
 
+Here are the above brain-image-processing-routines installation lines compiled into one copy-paste script. 
+```
+cd ~/Downloads
+wget https://github.com/joshuagohos/brain-image-processing-routines/archive/refs/heads/main.zip
+unzip main.zip
+sudo mv ~/Downloads/brain-image-processing-routines-main ~/Downloads/brain-image-processing-routines
+sudo cp -rf ~/Downloads/brain-image-processing-routines /opt/
+sudo chmod -R +x /opt/brain-image-processing-routines/routines/*
+sudo chmod +rwx /opt/brain-image-processing-routines/bin/*
+sudo rsync -azvh /opt/brain-image-processing-routines/bin/* /usr/local/bin/
+```
+
 # Usage
 Configure the pipeline scripts in brain-image-processing-routines/pipelines as needed and run. For example, after. configuring pipeline.sh, run the following.
 ```
